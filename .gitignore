@@ -1,2 +1,2 @@
-/cargo/.cargo/  #ignore .cargo/bin
+/cargo/.cargo
 *.tar.gz

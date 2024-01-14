@@ -1,8 +1,7 @@
 lsd
-fd
-yazi
+fd-find
+yazi-fm
 atuin
-dust
 hyperfine
 ripgrep
 just
@@ -10,3 +9,4 @@ zoxide
 viu
 pueue
 gping
+#dust
