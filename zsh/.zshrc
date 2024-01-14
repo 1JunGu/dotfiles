@@ -29,7 +29,7 @@ plug "esc/conda-zsh-completion" #Zsh completion for conda
 #plug "zap-zsh/zap-prompt" #DIY not NOW! #TODO
 
 # fzf
-[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh #fzf
+[ -f ~/.config/fzf/fzf.zsh ] && source ~/.config/fzf/fzf.zsh #fzf must be installed in $HOME/.local/src/
 # keybinds
 bindkey -s "^Y" 'yazi^M' #yazi
 bindkey ',' autosuggest-accept #zsh-autosuggestions
