@@ -25,12 +25,13 @@ plug "romkatv/powerlevel10k" #prompt
 plug "zsh-users/zsh-syntax-highlighting" #Fish like syntax highlighting
 plug "zsh-users/zsh-autosuggestions" #Fish-like autosuggestions for zsh
 plug "zap-zsh/vim" #A simple vim plugin for zsh
-#plug "esc/conda-zsh-completion"
+plug "esc/conda-zsh-completion" #Zsh completion for conda
 #plug "zap-zsh/zap-prompt" #DIY not NOW! #TODO
 
 # fzf
 [ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh #fzf
 # keybinds
 bindkey -s "^Y" 'yazi^M' #yazi
+bindkey ',' autosuggest-accept #zsh-autosuggestions
 
 #neofetch --memory_percent on #Display system info
