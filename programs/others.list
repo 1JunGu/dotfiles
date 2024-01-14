@@ -1,5 +1,4 @@
 htop
-imgcat C
 fzf
 tldr
 duf
@@ -7,5 +6,6 @@ neofetch
 inxi
 progress
 cros
-imgcat Go
 trzsz
+imgcat #C, like viu, raster good in iTerm2 not in Tabby or other terminal emulators.
+img2sixel
