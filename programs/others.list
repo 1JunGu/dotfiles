@@ -1,11 +1,12 @@
+ncdu v2.3
+duf v0.8.0
+fzf v0.45.0
 htop
-fzf
 tldr
-duf
 neofetch
 inxi
 progress
-cros
+croc
 trzsz
 imgcat #C, like viu, raster good in iTerm2 not in Tabby or other terminal emulators.
 img2sixel
