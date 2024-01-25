@@ -15,19 +15,21 @@ alias rm='rm -i'
 alias lg='lazygit' #needed lazygit binary installed
 
 #pwd
-case "$(uname -s)" in
-Linux)
-    case "$(cat /proc/version)" in
-	#WSL2 or Centos
-        *microsoft*) alias pwd='pwd |clip.exe' ;;
-        *centos*) alias pwd='pwd |xclip -selection clipboard' ;; 
-	*) ;;
-    esac
-    ;;
-Darwin)
-#mac os
-    alias pwd='pwd |pbcopy'
-    ;;
-*)
-    ;;
-esac
+##case "$(uname -s)" in
+##Linux)
+###WSL2 or Centos
+##    case "$(cat /proc/version)" in
+##        *microsoft*) alias pwd='pwd |clip.exe' ;;
+##        *centos*) alias pwd='pwd |xclip -selection clipboard' ;; 
+##	  *) ;;
+##    esac
+##    ;;
+##Darwin)
+##mac os
+##    alias pwd='pwd |pbcopy' ;;
+##*)
+##    ;;
+##esac
+#
+## New methos using OSC52
+alias pwd='pwd |yank' #need self_bin/yank

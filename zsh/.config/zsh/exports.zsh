@@ -1,6 +1,7 @@
 #!/bin/sh
 # Commands
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/self_bin:$PATH #self_defined excute command
 
 eval "$(zoxide init zsh)" #zoxide
 eval "$(atuin init zsh --disable-up-arrow)"  #atuin SQLite shell history
