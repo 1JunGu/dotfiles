@@ -9,11 +9,12 @@ target = wezterm.target_triple
 -----
 local mod = {}
 if target == "x86_64-pc-windows-msvc" then
-	mod.SUPER = 'ALT'
-	mod.SUPER_REV = 'ALT|CTRL'
-if target == "x86_64-apple-darwin" then
+	mod.SUPER = 'ALT' -- to not conflict with Windows key shortcuts
+	mod.SUPER_REV = 'CTRL'
+elseif target == "x86_64-apple-darwin" then
 	mod.SUPER = 'SUPER' --CMD
-	mod.SUPER_REV = 'SUPER|CTRL'
+	mod.SUPER_REV = 'SUPER'
+end
 
 local M = {}
 
@@ -94,37 +95,35 @@ function M.append(config)
         --
         -- Keyboard mappings
         --
-        -- timeout_milliseconds defaults to 2000
---keys = {
---{ key = 'C', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
---}
-        leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 },
+        -- timeout_milliseconds defaults to 5000
+        -- send lead key to `CTL + a`
+        leader = { key = "a", mods = "CTRL", timeout_milliseconds = 5000 },
+        --Remap keys
         keys = {
-	    { key = 'C', mods = mod.SUPER, action = act.ActivateCopyMode },
             { key = "f", mods = "LEADER", action = "QuickSelect" },
             { key = "/", mods = "LEADER", action = act({ Search = { CaseInSensitiveString = "" } }) },
-            { key = "y", mods = "ALT", action = "ActivateCopyMode" },
-            { key = "C", mods = "CTL", action = act({ CopyTo = "Clipboard" }) },
-            { key = "Insert", mods = "SHIFT", action = act.PasteFrom('Clipboard') }, -- Another assignment
+            { key = "C", mods = "CTRL", action = act({ CopyTo = "Clipboard" }) },
+            { key = "Insert", mods = "SHIFT", action = act.PasteFrom('Clipboard') }, -- Windows keyboad
+            { key = "v", mods = mod.SUPER, action = act.PasteFrom('Clipboard') }, -- macOS keyboard
+            { key = 'C', mods = mod.SUPER, action = act.ActivateCopyMode },
+
             { key = "PageUp", mods = "", action = act.ScrollByPage(-1) },
             { key = "PageDown", mods = "", action = act.ScrollByPage(1) },
+            --tab behaviours
+            { key = "w", mods = mod.SUPER_REV, action = act({ CloseCurrentTab = { confirm = true } }) },
+            { key = "t", mods = mod.SUPER_REV, action = act({ SpawnTab = "CurrentPaneDomain" }) },
+            { key = "1", mods = mod.SUPER, action = act.ActivateTab(1 - 1) },
+            { key = "2", mods = mod.SUPER, action = act.ActivateTab(2 - 1) },
+            { key = "3", mods = mod.SUPER, action = act.ActivateTab(3 - 1) },
+            { key = "4", mods = mod.SUPER, action = act.ActivateTab(4 - 1) },
+            { key = "9", mods = mod.SUPER, action = act.ActivateLastTab },
+            --command palette
+            { key = "P", mods = mod.SUPER_REV, action = act.ActivateCommandPalette },
+            --reload configrations
+            { key = "r", mods = mod.SUPER_REV, action = "ReloadConfiguration" },
 
 
-            {
-                key = "h",
-                mods = "LEADER",
-                action = act.ActivateKeyTable({
-                    name = "help",
-                }),
-            },
-            {
-                key = "t",
-                mods = "LEADER",
-                action = act.ActivateKeyTable({
-                    name = "tab",
-                    one_shot = false,
-                }),
-            },
+            --key tables
             {
                 key = "p",
                 mods = "LEADER",
@@ -144,42 +143,27 @@ function M.append(config)
         },
 
         key_tables = {
-            help = {
-                { key = "p", action = act.ActivateCommandPalette },
-                { key = "r", action = "ReloadConfiguration" },
-            },
-            tab = {
-                { key = "t", action = act({ SpawnTab = "CurrentPaneDomain" }) },
-                -- `k` stands for `kill`
-                { key = "k", action = act({ CloseCurrentTab = { confirm = true } }) },
-                { key = "m", action = act({ ActivateTabRelative = 1 }) },
-                { key = "i", action = act({ ActivateTabRelative = -1 }) },
-                { key = "1", action = act.ActivateTab(1 - 1) },
-                { key = "2", action = act.ActivateTab(2 - 1) },
-                { key = "3", action = act.ActivateTab(3 - 1) },
-                { key = "4", action = act.ActivateTab(4 - 1) },
-                { key = "9", action = act.ActivateLastTab },
-                {
-                    key = "r",
-                    action = act.PromptInputLine({
-                        description = "New tab name:",
-                        action = wezterm.action_callback(function(window, _, line)
-                            if line then
-                                window:active_tab():set_title(line)
-                            end
-                        end),
-                    }),
-                },
-
-                { key = "Escape", action = "PopKeyTable" },
-                { key = "Return", action = "PopKeyTable" },
-            },
+            --tab = {
+            --    {
+            --        key = "r",
+            --        action = act.PromptInputLine({
+            --            description = "Enter new tab name:",
+            --            action = wezterm.action_callback(function(window, _, line)
+            --                if line then
+            --                    window:active_tab():set_title(line)
+            --                end
+            --            end),
+            --        }),
+            --    },
+            --    { key = "Escape", action = "PopKeyTable" },
+            --    { key = "Return", action = "PopKeyTable" },
+            --},
             pane = {
                 -- Vertical in Wezterm is different than Emacs/Neovim
-                { key = "s", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-                { key = "v", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+                { key = "|", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+                { key = "-", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
 
-                { key = "k", action = act({ CloseCurrentPane = { confirm = true } }) },
+                { key = "x", action = act({ CloseCurrentPane = { confirm = true } }) },
                 { key = "z", action = act.TogglePaneZoomState },
 
                 { key = "RightArrow", action = act({ ActivatePaneDirection = "Right" }) },
@@ -187,21 +171,25 @@ function M.append(config)
                 { key = "UpArrow", action = act({ ActivatePaneDirection = "Up" }) },
                 { key = "LeftArrow", action = act({ ActivatePaneDirection = "Left" }) },
 
-                { key = "m", mods = "CTRL", action = act({ ActivatePaneDirection = "Right" }) },
-                { key = "n", mods = "CTRL", action = act({ ActivatePaneDirection = "Down" }) },
-                { key = "e", mods = "CTRL", action = act({ ActivatePaneDirection = "Up" }) },
-                { key = "i", mods = "CTRL", action = act({ ActivatePaneDirection = "Left" }) },
+                { key = "h", action = act({ ActivatePaneDirection = "Right" }) },
+                { key = "j", action = act({ ActivatePaneDirection = "Down" }) },
+                { key = "k", action = act({ ActivatePaneDirection = "Up" }) },
+                { key = "l", action = act({ ActivatePaneDirection = "Left" }) },
 
                 { key = "Return", action = "PopKeyTable" },
                 { key = "Escape", action = "PopKeyTable" },
             },
             scroll = {
-                { key = "e", action = act({ ScrollByPage = -1 }) },
-                { key = "n", action = act({ ScrollByPage = 1 }) },
+                { key = "b", mods = "CTRL", action = act({ ScrollByPage = -1 }) },
+                { key = "f", mods = "CTRL", action = act({ ScrollByPage = 1 }) },
 
                 { key = "PageUp", action = act.ScrollByPage(-0.5) },
                 { key = "PageDown", action = act.ScrollByPage(0.5) },
 
+                { key = "u", mods = "CTRL", action = act.ScrollByPage(-0.5) },
+                { key = "d", mods = "CTRL", action = act.ScrollByPage(0.5) },
+
+                { key = "Return", action = "PopKeyTable" },
                 { key = "Escape", action = "PopKeyTable" },
             },
             copy_mode = {
@@ -216,10 +204,10 @@ function M.append(config)
                 { key = "c", mods = "CTRL", action = act.CopyMode("Close") },
                 { key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
 
-                { key = "m", mods = "NONE", action = act.CopyMode("MoveLeft") },
-                { key = "n", mods = "NONE", action = act.CopyMode("MoveDown") },
-                { key = "e", mods = "NONE", action = act.CopyMode("MoveUp") },
-                { key = "i", mods = "NONE", action = act.CopyMode("MoveRight") },
+                { key = "h", mods = "NONE", action = act.CopyMode("MoveLeft") },
+                { key = "j", mods = "NONE", action = act.CopyMode("MoveDown") },
+                { key = "k", mods = "NONE", action = act.CopyMode("MoveUp") },
+                { key = "l", mods = "NONE", action = act.CopyMode("MoveRight") },
 
                 { key = "LeftArrow", mods = "NONE", action = act.CopyMode("MoveLeft") },
                 { key = "DownArrow", mods = "NONE", action = act.CopyMode("MoveDown") },
@@ -227,6 +215,7 @@ function M.append(config)
                 { key = "RightArrow", mods = "NONE", action = act.CopyMode("MoveRight") },
 
                 { key = "f", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
+                { key = "w", mods = "NONE", action = act.CopyMode("MoveForwardWordEnd") },
                 { key = "b", mods = "NONE", action = act.CopyMode("MoveBackwardWord") },
 
                 { key = "0", mods = "NONE", action = act.CopyMode("MoveToStartOfLine") },

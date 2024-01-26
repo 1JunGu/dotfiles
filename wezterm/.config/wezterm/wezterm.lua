@@ -5,6 +5,23 @@ colors.scrollbar_thumb = '#cccccc' -- evident scroobar
 local act = wezterm.action
 
 local keybinds = require("key-bindings")
+wezterm.on('augment-command-palette', function(window, pane)
+  return {
+    {
+      brief = 'Rename tab',
+      icon = 'md_rename_box',
+
+      action = act.PromptInputLine {
+        description = 'Enter new name for tab',
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end),
+      },
+    },
+  }
+end)
 
 local config = {
     ---Fonts
@@ -86,29 +103,10 @@ local config = {
     audible_bell="Disabled", --disable bell sound
     -- Use the defaults as a base
     --hyperlink_rules = wezterm.default_hyperlink_rules(),
-    ----Keys
-    keys = {
-        { key = 'C', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
-    }
 }
 -- Use the defaults as a base
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
---key Binding
---send lead key to `CTL + a`
---config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 } 
---config.keys = {
---  {
---    key = '|',
---    mods = 'LEADER|SHIFT',
---    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
---  },
---  {
---    key = '-',
---    mods = 'LEADER',
---    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
---  },
---}
 keybinds.append(config)
 
 return config
