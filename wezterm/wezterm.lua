@@ -2,10 +2,13 @@ local wezterm = require "wezterm"
 --local colors = require("colors.iTerm2")
 local colors = wezterm.color.get_builtin_schemes()['Catppuccin Frappe']
 colors.scrollbar_thumb = '#cccccc' -- evident scroobar
+local act = wezterm.action
+
+local keybinds = require("key-bindings")
 
 local config = {
     ---Fonts
-    font_size = 15,
+    font_size = 14,
     font = wezterm.font("Fira Code", {weight="Medium"}), --or FiraCode Nerd Font Mono
     --window_decorations = "RESIZE",
     --macos_window_background_blur = 9,
@@ -40,7 +43,7 @@ local config = {
     --integrated_title_button_style = "Gnome",
     window_padding = {
         left = 0,
-        right = 15,
+        right = 12,
         top = 0,
         bottom = 0,
     },
@@ -85,10 +88,27 @@ local config = {
     --hyperlink_rules = wezterm.default_hyperlink_rules(),
     ----Keys
     keys = {
-        { key = 'C', mods = 'SUPER', action = wezterm.action.ActivateCopyMode },
+        { key = 'C', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
     }
 }
 -- Use the defaults as a base
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
+
+--key Binding
+--send lead key to `CTL + a`
+--config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 } 
+--config.keys = {
+--  {
+--    key = '|',
+--    mods = 'LEADER|SHIFT',
+--    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+--  },
+--  {
+--    key = '-',
+--    mods = 'LEADER',
+--    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+--  },
+--}
+keybinds.append(config)
 
 return config
