@@ -3,8 +3,9 @@
 - [x] Zsh
 - [x] Programs
 - [x] self_bin
+- [x] wezterm
 
 ## To Do list
-- [ ] vim
 - [ ] tmux
+- [ ] vim
 - [ ] etc.
