@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-target = wezterm.target_triple
+local target = wezterm.target_triple
 -----
 ----x86_64-pc-windows-mscv - Windows
 ----x86_64-apple-darwin    - macOS (Intel)
@@ -110,8 +110,9 @@ function M.append(config)
             { key = "PageUp", mods = "", action = act.ScrollByPage(-1) },
             { key = "PageDown", mods = "", action = act.ScrollByPage(1) },
             --tab behaviours
-            { key = "w", mods = mod.SUPER_REV, action = act({ CloseCurrentTab = { confirm = true } }) },
+            { key = "W", mods = mod.SUPER_REV, action = act({ CloseCurrentTab = { confirm = false } }) }, -- close without confirmation
             { key = "t", mods = mod.SUPER_REV, action = act({ SpawnTab = "CurrentPaneDomain" }) },
+            { key = "T", mods = mod.SUPER_REV, action = act({ SpawnTab = "DefaultDomain" }) },
             { key = "1", mods = mod.SUPER, action = act.ActivateTab(1 - 1) },
             { key = "2", mods = mod.SUPER, action = act.ActivateTab(2 - 1) },
             { key = "3", mods = mod.SUPER, action = act.ActivateTab(3 - 1) },
@@ -121,6 +122,12 @@ function M.append(config)
             { key = "P", mods = mod.SUPER_REV, action = act.ActivateCommandPalette },
             --reload configrations
             { key = "r", mods = mod.SUPER_REV, action = "ReloadConfiguration" },
+	    --Spawn window
+            { key = "N", mods = mod.SUPER_REV, action = act.SpawnWindow },
+	    --Change font size
+	    { key = '=', mods = mod.SUPER_REV, action = act.IncreaseFontSize },
+	    { key = '-', mods = mod.SUPER_REV, action = act.DecreaseFontSize },
+	    { key = '0', mods = mod.SUPER_REV, action = act.ResetFontSize },
 
 
             --key tables
@@ -160,8 +167,8 @@ function M.append(config)
             --},
             pane = {
                 -- Vertical in Wezterm is different than Emacs/Neovim
-                { key = "|", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-                { key = "-", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+                { key = "-", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+                { key = "|", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
 
                 { key = "x", action = act({ CloseCurrentPane = { confirm = true } }) },
                 { key = "z", action = act.TogglePaneZoomState },
@@ -171,10 +178,10 @@ function M.append(config)
                 { key = "UpArrow", action = act({ ActivatePaneDirection = "Up" }) },
                 { key = "LeftArrow", action = act({ ActivatePaneDirection = "Left" }) },
 
-                { key = "h", action = act({ ActivatePaneDirection = "Right" }) },
+                { key = "h", action = act({ ActivatePaneDirection = "Left" }) },
                 { key = "j", action = act({ ActivatePaneDirection = "Down" }) },
                 { key = "k", action = act({ ActivatePaneDirection = "Up" }) },
-                { key = "l", action = act({ ActivatePaneDirection = "Left" }) },
+                { key = "l", action = act({ ActivatePaneDirection = "Right" }) },
 
                 { key = "Return", action = "PopKeyTable" },
                 { key = "Escape", action = "PopKeyTable" },
