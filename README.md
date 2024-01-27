@@ -6,6 +6,7 @@
 - [x] wezterm
 
 ## To Do list
-- [ ] tmux
+- [ ] neovim
 - [ ] vim
+- [ ] tmux
 - [ ] etc.
