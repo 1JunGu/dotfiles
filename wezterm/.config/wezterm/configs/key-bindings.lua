@@ -120,6 +120,9 @@ function M.append(config)
             { key = "9", mods = mod.SUPER, action = act.ActivateLastTab },
             --command palette
             { key = "P", mods = mod.SUPER_REV, action = act.ActivateCommandPalette },
+	    --Launch menu
+            { key = "s", mods = "ALT", action = act.ShowLauncher },
+            { key = "9", mods = "ALT", action = act.ShowLauncherArgs {flags = 'FUZZY|DOMAINS|KEY_ASSIGNMENTS'} },
             --reload configrations
             { key = "r", mods = mod.SUPER_REV, action = "ReloadConfiguration" },
 	    --Spawn window

@@ -68,6 +68,12 @@ function M.append(config)
 	default_cursor_style = 'SteadyBlock',
 	cursor_thickness = "100%",
 
+    	----styling inactive panes
+    	inactive_pane_hsb = {
+    	    saturation = 0.7,
+    	    brightness = 0.7,
+    	},
+
     }
 
     for key, value in pairs(options) do
