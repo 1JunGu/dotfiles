@@ -17,11 +17,11 @@ function M.append(config)
 
 	    if target == "x86_64-pc-windows-msvc" then
 	        options.default_prog = {'powershell'}
-    	        options.default_domain = "WSL:Ubuntu"
+    	        --options.default_domain = "WSL:Ubuntu"
 	        -----The Launcher Menu
 	    	options.launch_menu = {
 	    	  { label = 'PowerShell Desktop', args = { 'powershell' } },
-	    	  { label = 'Command Prompt', args = { 'cmd' } },
+	    	  { label = 'Command Prompt', args = { 'cmd.exe' } },
 	    	  { label = 'Ubuntu', args = { 'wsl' } },
 	    	}
 
