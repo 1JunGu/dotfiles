@@ -4,9 +4,9 @@
 - [x] Programs
 - [x] self_bin
 - [x] wezterm
+- [x] neovim
 
 ## To Do list
-- [ ] neovim
 - [ ] vim
 - [ ] tmux
 - [ ] etc.
