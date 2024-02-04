@@ -3,6 +3,28 @@
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/self_bin:$PATH #self_defined excute command
 
+case "$(uname -s)" in
+Linux)
+#WSL2 or Centos
+    case "$(cat /proc/version)" in
+        *microsoft*) ;;
+        *centos*) ;; 
+	  *) ;;
+    esac
+    ;;
+Darwin)
+##mac os
+    #brew path
+    export PATH=/usr/local/bin:$PATH ;;
+    #nvm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+*)
+    ;;
+esac
+
+
 eval "$(zoxide init zsh)" #zoxide
 eval "$(atuin init zsh --disable-up-arrow)"  #atuin SQLite shell history
 
