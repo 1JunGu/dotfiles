@@ -33,3 +33,7 @@ alias lg='lazygit' #needed lazygit binary installed
 #
 ## New methos using OSC52
 alias pwd='pwd |tee /dev/fd/2 |yank' #need self_bin/yank and /dev/fd/1 represents the stdout
+
+##vim or neovim
+alias vi='vim'
+alias vim='nvim'
