@@ -49,6 +49,15 @@ return vim.schedule_wrap(function()
 				},
 			},
 		},
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "<CR>",
+				node_incremental = "<CR>",
+				node_decremental = "<BS>",
+				scope_incremental = "<TAB>",
+			},
+		},
 		indent = { enable = true },
 		matchup = { enable = true },
 	}, false, require("nvim-treesitter.configs").setup)

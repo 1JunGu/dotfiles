@@ -23,7 +23,7 @@ settings["null_ls_deps"] = function(defaults)
 		defaults[5], --stylua for lua
 		defaults[6], --vint for vim script
 		"ruff", --python
-		"fprettify", --fortran
+		--"fprettify", --fortran
 	}
 end
 
@@ -51,5 +51,10 @@ settings["treesitter_deps"] = function(defaults)
 		"fortran",
 	}
 end
+
+settings["disabled_plugins"] = {
+	"karb94/neoscroll.nvim", --Smooth scrolling
+	--"dstein64/nvim-scrollview",
+}
 
 return settings
