@@ -16,6 +16,7 @@ Darwin)
 ##mac os
     #brew path
     export PATH=/usr/local/bin:$PATH
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
     #nvm
     export NVM_DIR="$HOME/.nvm"
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"   # This loads nvm
