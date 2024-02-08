@@ -37,3 +37,6 @@ alias pwd='pwd |tee /dev/fd/2 |yank' #need self_bin/yank and /dev/fd/1 represent
 ##vim or neovim
 alias vi='vim'
 alias vim='nvim'
+
+##ssh with trzsz suport
+alias ssh='trzsz -d ssh'
