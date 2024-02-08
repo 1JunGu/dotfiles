@@ -7,12 +7,11 @@
 - [x] self_bin
 - [x] wezterm
 - [x] neovim
+- [x] tmux
 
 ## To Do list
 
 - [ ] vim
-- [ ] tmux
-- [ ] etc.
 
 ### [tmux](https://github.com/tmux/tmux)
 
