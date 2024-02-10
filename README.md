@@ -31,6 +31,7 @@
    ```
 
    > Then restart tmux
+   > refer this [blog](https://blog.rockydd.net/preview-images-in-terminal-with-iterm2-tmux-and-vifm) and this [project](https://github.com/wookayin/python-imgcat)
 
 ## Usage
 
