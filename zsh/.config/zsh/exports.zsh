@@ -45,8 +45,16 @@ setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space
 setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in history file
 setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry
 setopt HIST_VERIFY              # Don't excute immediately upon history expansion
+
+setopt autocd # auto cd without cd prefix
 #completion
-setopt autocd
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+_comp_options+=(globdots)               # Include hidden files.
+
+#autoload -Uz colors && colors
 
 # conda
 # >>> conda initialize >>>
