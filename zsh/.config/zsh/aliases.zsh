@@ -40,3 +40,7 @@ alias vim='nvim'
 
 ##ssh with trzsz suport
 alias ssh='trzsz -d ssh'
+
+#NCL and img
+alias ncl='ncl -Qn'
+alias img='img2sixel -w 1200'

@@ -11,3 +11,4 @@
     ci = commit
     st = status --short
     s = status
+    l = log --graph --decorate --all

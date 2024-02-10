@@ -5,6 +5,9 @@ function cls() {
 function tm() {
     tmux -L "$1" -f ~/.config/tmux/.tmux.conf new-session -A -s "$1"
 }
+function trim() {
+    convert -trim -background white $1 $1
+}
 #yazi
 function ya() {
 	tmp="$(mktemp -t "yazi-cwd.XXXXX")"
