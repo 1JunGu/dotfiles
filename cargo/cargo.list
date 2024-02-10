@@ -2,10 +2,11 @@ lsd
 fd-find
 yazi-fm
 atuin
-hyperfine
 ripgrep
-just
 zoxide
+#optional below
+hyperfine
+just
 viu
 pueue
 gping

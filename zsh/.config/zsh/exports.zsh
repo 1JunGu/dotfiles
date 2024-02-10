@@ -3,6 +3,29 @@
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/self_bin:$PATH #self_defined excute command
 
+case "$(uname -s)" in
+Linux)
+#WSL2 or Centos
+    case "$(cat /proc/version)" in
+        *microsoft*) ;;
+        *centos*) ;; 
+	  *) ;;
+    esac
+    ;;
+Darwin)
+##mac os
+    #brew path
+    export PATH=/usr/local/bin:$PATH
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+    #nvm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"   # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ;;  # This loads nvm bash_completion
+*)
+    ;;
+esac
+
+
 eval "$(zoxide init zsh)" #zoxide
 eval "$(atuin init zsh --disable-up-arrow)"  #atuin SQLite shell history
 
@@ -22,6 +45,16 @@ setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space
 setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in history file
 setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry
 setopt HIST_VERIFY              # Don't excute immediately upon history expansion
+
+setopt autocd # auto cd without cd prefix
+#completion
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+_comp_options+=(globdots)               # Include hidden files.
+
+#autoload -Uz colors && colors
 
 # conda
 # >>> conda initialize >>>

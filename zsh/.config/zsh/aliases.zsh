@@ -19,13 +19,28 @@ alias lg='lazygit' #needed lazygit binary installed
 ##Linux)
 ###WSL2 or Centos
 ##    case "$(cat /proc/version)" in
-##        *Microsoft*) alias pwd='pwd |clip.exe' ;;
+##        *microsoft*) alias pwd='pwd |clip.exe' ;;
 ##        *centos*) alias pwd='pwd |xclip -selection clipboard' ;; 
+##	  *) ;;
 ##    esac
-##    alias pwd='pwd |xclip -selection clipboard' ;;
+##    ;;
 ##Darwin)
+##mac os
 ##    alias pwd='pwd |pbcopy' ;;
+##*)
+##    ;;
+##esac
+#
 ## New methos using OSC52
-alias pwd='pwd |yank'
+alias pwd='pwd |tee /dev/fd/2 |yank' #need self_bin/yank and /dev/fd/1 represents the stdout
 
+##vim or neovim
+alias vi='vim'
+alias vim='nvim'
 
+##ssh with trzsz suport
+alias ssh='trzsz -d ssh'
+
+#NCL and img
+alias ncl='ncl -Qn'
+alias img='img2sixel -w 1200'

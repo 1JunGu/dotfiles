@@ -1,0 +1,14 @@
+[init]
+    defaultBranch = main
+[user]
+	email = gj99@mail.ustc.edu.com
+	name = Jun Gu
+[core]
+	editor = vim
+[alias]
+    co = checkout
+    br = branch
+    ci = commit
+    st = status --short
+    s = status
+    l = log --graph --decorate --all

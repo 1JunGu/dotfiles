@@ -8,5 +8,6 @@ inxi
 progress
 croc
 trzsz
-imgcat #C, like viu, raster good in iTerm2 not in Tabby or other terminal emulators.
+#imgcat #C, like viu, raster good in iTerm2 not in Tabby or other terminal emulators.
+##Now using image protocol in local/self_bin
 img2sixel
