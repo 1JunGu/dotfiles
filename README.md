@@ -37,7 +37,7 @@
 
 1. ZSH
    backup your old zshrc and config and remove; Then
-   `stow zsh`
+   `stow zsh` and zap plugin cache dir
 
 2. Wezterm
    Only useful on your local machine
