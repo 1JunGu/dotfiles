@@ -1,10 +1,10 @@
 [init]
     defaultBranch = main
 [user]
-	email = gj99@mail.ustc.edu.com
-	name = Jun Gu
+    email = gj99@mail.ustc.edu.com
+    name = Jun Gu
 [core]
-	editor = vim
+    editor = vim
 [alias]
     co = checkout
     br = branch
@@ -12,3 +12,5 @@
     st = status --short
     s = status
     l = log --graph --decorate --all
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    reflg = reflog --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
