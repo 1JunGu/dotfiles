@@ -1,9 +1,9 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == *$HOME/.local/src/fzf/bin* ]]; then
-  PATH="${PATH:+${PATH}:}$HOME/.local/src/fzf/bin"
-fi
-
+#if [[ ! "$PATH" == *$HOME/.local/src/fzf/bin* ]]; then
+#  PATH="${PATH:+${PATH}:}$HOME/.local/src/fzf/bin"
+#fi
+#
 # Auto-completion
 # ---------------
 source "$HOME/.config/fzf/completion.zsh"

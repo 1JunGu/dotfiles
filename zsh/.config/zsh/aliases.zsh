@@ -35,8 +35,8 @@ alias lg='lazygit' #needed lazygit binary installed
 alias pwd='pwd |tee /dev/fd/2 |yank' #need self_bin/yank and /dev/fd/1 represents the stdout
 
 ##vim or neovim
-alias vi='vim'
-alias vim='nvim'
+alias vi='nvim'
+alias vim='vim'
 
 ##ssh with trzsz suport
 alias ssh='trzsz -d ssh'

@@ -1,13 +1,14 @@
 ncdu v2.3
 duf v0.8.0
 fzf v0.45.0
+lazygit
+trzsz
 htop
-tldr
 neofetch
 inxi
 progress
 croc
-trzsz
+tldr
 #imgcat #C, like viu, raster good in iTerm2 not in Tabby or other terminal emulators.
 ##Now using image protocol in local/self_bin
 img2sixel

@@ -31,7 +31,7 @@ plug "esc/conda-zsh-completion" #Zsh completion for conda
 # fzf
 [ -f ~/.config/fzf/fzf.zsh ] && source ~/.config/fzf/fzf.zsh #fzf must be installed in $HOME/.local/src/
 # keybinds
-bindkey -s "^Y" 'yazi^M' #yazi
+bindkey -s "^Y" 'ya^M' #yazi
 bindkey ',' autosuggest-accept #zsh-autosuggestions
 
 #neofetch --memory_percent on #Display system info
