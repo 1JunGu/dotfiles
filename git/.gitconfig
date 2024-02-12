@@ -5,6 +5,7 @@
     name = Jun Gu
 [core]
     editor = vim
+	excludesfile = $HOME/.gitignore_global
 [alias]
     co = checkout
     br = branch
