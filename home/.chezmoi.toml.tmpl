@@ -1,6 +1,31 @@
+{{/*
+Collects initial chezmoi configuration values interactively:
+
+- Prompts once for `user` (displayed as "User name") and stores the result.
+- Prompts once for `email` (displayed as "Email address") and stores the result.
+- Determines `system` as follows:
+    - If running on macOS (`darwin`) or Windows or WSL, sets `system` to `"client"` automatically.
+    - Otherwise, prompts the user to enter `system` (expected: `client` or `server`).
+
+This logic ensures desktop platforms default to client mode, while non-desktop/other OSes require explicit role selection.
+*/}}
+
 {{- $user  := promptStringOnce . "user"  "User name" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
+
+{{- $system := "" -}}
+{{- if or (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
+{{-   $system = "client" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-     $system = "client" -}}
+{{-   else -}}
+{{-     $system = promptString "System (client or server)" -}}
+{{-   end -}}
+{{- end -}}
+
 [data]
-    user  = {{ $user  | quote }}
-    email = {{ $email | quote }}
+    user   = {{ $user  | quote }}
+    email  = {{ $email | quote }}
+    system = {{ $system | quote }}
