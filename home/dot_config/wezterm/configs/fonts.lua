@@ -12,7 +12,7 @@ function M.append(config)
         options.font_size = 14
 
     elseif target == "aarch64-apple-darwin" then
-        options.font_size = 15
+        options.font_size = 16
     end
 
     for key, value in pairs(options) do
