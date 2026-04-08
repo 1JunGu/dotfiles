@@ -1,0 +1,3 @@
+{{- if eq .chezmoi.os "linux" }}
+.config/wezterm/* #ignore wezterm and its contents when the system is linux
+{{- end }}
