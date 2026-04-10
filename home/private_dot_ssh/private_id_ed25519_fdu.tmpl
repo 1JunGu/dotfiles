@@ -1,0 +1,3 @@
+{{- if eq .system "client" -}}
+{{ (bitwarden "item" "ed25519_fdu").sshKey.privateKey }}
+{{- end -}}

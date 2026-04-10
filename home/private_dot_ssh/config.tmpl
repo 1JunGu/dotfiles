@@ -18,6 +18,7 @@ Host *
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h-%p
     ControlPersist 1d
+
 {{ end -}}
 
 # General use
@@ -29,5 +30,79 @@ Host github.com
     IdentityFile ~/.ssh/id_ed25519_person
 
 {{ if (eq .system "client") -}}
-#Host
+# computing resources in LACAR
+Host gitustc
+    HostName git.ustc.edu.cn
+    ProxyJump Micro
+Host Micro
+    HostName {{ (bitwardenFields "item" "micro@lacar").hostname.value }}
+    User {{ (bitwardenFields "item" "micro@lacar").user.value }}
+    Port {{ (bitwardenFields "item" "micro@lacar").port.value }}
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_lacar
+    ForwardX11 yes
+    ForwardAgent yes
+Host data01
+    HostName {{ (bitwardenFields "item" "data01@lacar").hostname.value }}
+    User {{ (bitwardenFields "item" "data01@lacar").user.value }}
+    Port {{ (bitwardenFields "item" "data01@lacar").port.value }}
+Host core01
+    HostName {{ (bitwardenFields "item" "core01@lacar").hostname.value }}
+    User {{ (bitwardenFields "item" "core01@lacar").user.value }}
+    Port {{ (bitwardenFields "item" "core01@lacar").port.value }}
+    ProxyJump Micro
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_lacar
+Host core02
+    HostName {{ (bitwardenFields "item" "core02@lacar").hostname.value }}
+    User {{ (bitwardenFields "item" "core02@lacar").user.value }}
+    Port {{ (bitwardenFields "item" "core02@lacar").port.value }}
+    ProxyJump Micro
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_lacar
+    #ForwardX11 yes
+
+# Sunway OceanLight
+Host swustc
+    HostName {{ (bitwardenFields "item" "swustc").hostname.value }}
+    User {{ (bitwardenFields "item" "swustc").user.value }}
+    Port {{ (bitwardenFields "item" "swustc").port.value }}
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_lacar
+    #!!EnableDragFile Yes
+    #!!DragFileUploadCommand trz -y
+Host swiamas
+    HostName {{ (bitwardenFields "item" "swiamas").hostname.value }}
+    User {{ (bitwardenFields "item" "swiamas").user.value }}
+    Port {{ (bitwardenFields "item" "swiamas").port.value }}
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_lacar
+
+# CAS dongfang supercomputer (ORISE)
+Host orise
+    HostName {{ (bitwardenFields "item" "orise@cas").hostname.value }}
+    User {{ (bitwardenFields "item" "orise@cas").user.value }}
+    Port {{ (bitwardenFields "item" "orise@cas").port.value }}
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+
+#computing resources in Fudan University
+Host scnet
+    HostName {{ (bitwardenFields "item" "scnet@fdu").hostname.value }}
+    User {{ (bitwardenFields "item" "scnet@fdu").user.value }}
+    Port {{ (bitwardenFields "item" "scnet@fdu").port.value }}
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/scnet_xian_expire
+Host fdu_sms
+    HostName {{ (bitwardenFields "item" "sms@fdu").hostname.value }}
+    User {{ (bitwardenFields "item" "sms@fdu").user.value }}
+    Port {{ (bitwardenFields "item" "sms@fdu").port.value }}
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_fdu
+Host gitlab.dkrz.de
+    HostName gitlab.dkrz.de
+    User git
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_fdu
+
 {{ end -}}
