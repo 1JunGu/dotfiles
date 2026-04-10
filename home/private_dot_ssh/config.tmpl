@@ -1,0 +1,33 @@
+# Global settings
+Host *
+    ServerAliveInterval 120
+    ServerAliveCountMax 15
+    TCPKeepAlive yes
+
+    #security
+    StrictHostKeyChecking ask,ccept-new
+    UserKnownHostsFile ~/.ssh/known_hosts
+    PreferredAuthentications publickey,keyboard-interactive,password
+
+    #agent
+    AddKeysToAgent yes
+    ForwardAgent no
+
+{{- if and (eq .chezmoi.system "client")(ne .chezmoi.system "windows") -}}
+    #use socket multiplexing
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h-%p
+    ControlPersist 1d
+{{- end -}}
+
+# General use
+Host github.com
+    HostName ssh.github.com
+    Port 443
+    StrictHostKeyChecking no
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_person
+
+{{- if (eq .chezmoi.system "client) -}}
+Host
+{{- end -}}
