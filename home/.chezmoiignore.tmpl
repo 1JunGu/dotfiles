@@ -2,6 +2,6 @@
 .config/wezterm #ignore wezterm and its contents when the system is linux
 {{- end }}
 
-{{- if ne .chezmoi.os "darwin }}
+{{- if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/darwin/**
 {{- end }}
