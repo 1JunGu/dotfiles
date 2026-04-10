@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+#set up predefined brews and casks
+{{ $brews := list
+    "aria2"
+    "btop"
+    "chezmoi"
+    "chsrc"
+    "corkscrew"
+    "croc"
+    "exiftool"
+    "eza"
+    "htop"
+    "mole"
+    "neovim"
+    "starship"
+    "syncthing"
+    "trzsz-ssh"
+    "uv" -}}
+{{ $casks := list
+    "brave-browser"
+    "chatgpt"
+    "cherry-studio"
+    "eudic"
+    "font-fira-code"
+    "font-fira-code-nerd-font"
+    "font-lxgw-wenkai"
+    "itsycal"
+    "microsoft-edge"
+    "obs"
+    "obsidian"
+    "pixpin"
+    "qbittorrent"
+    "raycast"
+    "readdle-spark"
+    "skim"
+    "tailscale-app"
+    "tencent-meeting"
+    "visual-studio-code"
+    "vlc"
+    "wechat"
+    "wezterm"
+    "zed"
+    "zoom"
+    "zotero" -}}
+
+#create brew bundle file
+brew bundle --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
