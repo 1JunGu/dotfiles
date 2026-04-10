@@ -5,7 +5,7 @@ Host *
     TCPKeepAlive yes
 
     #security
-    StrictHostKeyChecking ask,ccept-new
+    StrictHostKeyChecking accept-new
     UserKnownHostsFile ~/.ssh/known_hosts
     PreferredAuthentications publickey,keyboard-interactive,password
 
@@ -13,12 +13,12 @@ Host *
     AddKeysToAgent yes
     ForwardAgent no
 
-{{- if and (eq .chezmoi.system "client")(ne .chezmoi.system "windows") -}}
+{{ if and (eq .system "client") (ne .chezmoi.os "windows") -}}
     #use socket multiplexing
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h-%p
     ControlPersist 1d
-{{- end -}}
+{{ end -}}
 
 # General use
 Host github.com
@@ -28,6 +28,6 @@ Host github.com
     IdentitiesOnly yes
     IdentityFile ~/.ssh/id_ed25519_person
 
-{{- if (eq .chezmoi.system "client) -}}
-Host
-{{- end -}}
+{{ if (eq .system "client") -}}
+#Host
+{{ end -}}
