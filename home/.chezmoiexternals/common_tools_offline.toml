@@ -1,0 +1,8 @@
+{{- if and (eq .chezmoi.os "linux") (eq .system "client") }}
+[".local/offline/tmux"]
+    type = "archive-file"
+    #url = {{ gitHubLatestReleaseAssetURL "tmux/tmux-builds" "tmux-3.6a-linux-x86_64.tar.gz" | quote }}
+    url = "https://github.com/tmux/tmux-builds/releases/download/v3.6a/tmux-3.6a-linux-x86_64.tar.gz"
+    executable = true
+    path = "tmux"
+{{- end }}
