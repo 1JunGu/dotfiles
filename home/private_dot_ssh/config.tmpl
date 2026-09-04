@@ -84,7 +84,12 @@ Host orise
     User {{ (bitwardenFields "item" "orise@cas").user.value }}
     Port {{ (bitwardenFields "item" "orise@cas").port.value }}
     StrictHostKeyChecking no
+{{ if eq .chezmoi.os "windows" -}}
+    UserKnownHostsFile NUL
+{{ else -}}
     UserKnownHostsFile /dev/null
+{{ end -}}
+
 
 #computing resources in Fudan University
 Host scnet
