@@ -1,0 +1,3 @@
+#.zshenv
+#Don't read global resources exclude /etc/zshenv (it only can be overridden by manual installation of zsh)
+unsetopt GLOBAL_RCS
