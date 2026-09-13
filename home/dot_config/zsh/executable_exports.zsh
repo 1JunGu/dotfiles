@@ -5,9 +5,6 @@ path=($HOME/.local/bin $HOME/.local/self_bin $path) # add custom bin directories
 # editors
 export EDITOR=nvim
 
-(( $+commands[zoxide] )) && eval "$(zoxide init zsh)" #zoxide
-(( $+commands[atuin] ))  && eval "$(atuin init zsh --disable-up-arrow)" #atuin SQLite shell history
-
 # History
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=50000

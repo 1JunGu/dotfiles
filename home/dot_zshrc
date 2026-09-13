@@ -45,5 +45,7 @@ bindkey ',' autosuggest-accept # zsh-autosuggestions
 # colors
 #autoload -Uz colors && colors
 
+(( $+commands[atuin] ))  && eval "$(atuin init zsh --disable-up-arrow)" #atuin SQLite shell history
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)" #zoxide
 #starship, should be the last line of .zshrc
 (( $+commands[starship] )) && eval "$(starship init zsh)"
