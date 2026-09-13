@@ -4,6 +4,7 @@ format = """
 [](color_orange)\
 $os\
 $username\
+$hostname\
 [](bg:color_yellow fg:color_orange)\
 $directory\
 [](fg:color_yellow bg:color_blue)\
@@ -58,6 +59,15 @@ show_always = true
 style_user = "bg:color_orange fg:color_fg0"
 style_root = "bg:color_orange fg:color_fg0"
 format = '[ $user ]($style)'
+
+[hostname]
+ssh_only=false
+style = "bg:color_orange fg:color_fg0"
+ssh_symbol= ""
+format='[$ssh_symbol on $hostname]($style)'
+#detect_env_vars = ['TMUX', 'SSH_CONNECTION']
+disabled=false
+aliases = { "WORKSTATION" = "wsl2"}
 
 [directory]
 style = "fg:color_fg0 bg:color_yellow"
