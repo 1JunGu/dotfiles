@@ -3,8 +3,9 @@ function cls() {
 }
 
 function tm() {
-    #tmux -L "$1" -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -A -s "$1"
-    tmux -S "$XDG_DATA_HOME/tmux/$1" -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -A -s "$1"
+    local sock_dir="${XDG_DATA_HOME:-$HOME/.local/share}/tmux"
+    [[ -d "$sock_dir" ]] || mkdir -p "$sock_dir"
+    tmux -S "$sock_dir/$(hostname)-$1.sock" -f $XDG_CONFIG_HOME/tmux/tmux.conf new-session -A -s "$1"
 }
 #function trim() {
 #    convert -trim -background white $1 $1
