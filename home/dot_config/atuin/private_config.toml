@@ -267,7 +267,7 @@ search_mode = "daemon-fuzzy"
 # strategy = "auto"
 
 [daemon]
-enabled = true
+enabled = false
 autostart = true
 ## Enables using the daemon to sync.
 # enabled = false
