@@ -40,7 +40,7 @@ bindkey -v # use vi mode
 (( $+commands[yazi] )) && bindkey -s "^Y" 'ya^M' #yazi
 bindkey ',' autosuggest-accept # zsh-autosuggestions
 # fzf
-[[ -f $XDG_CONFIG_HOME/fzf/fzf.zsh ]] && source $XDG_CONFIG_HOME/fzf/fzf.zsh #fzf must be installed in $HOME/.local/src/
+FZF_CTRL_R_COMMAND= source <(fzf --zsh) #disable fzf ctrl-r history search, use atuin instead
 
 # colors
 #autoload -Uz colors && colors
