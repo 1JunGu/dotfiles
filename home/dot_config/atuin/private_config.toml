@@ -70,11 +70,11 @@
 
 ## which display style to use
 ## possible values: auto, full, compact
-# style = "compact"
+style = "compact"
 
 ## the maximum number of lines the interface should take up
 ## set it to 0 to always go full screen
-# inline_height = 40
+inline_height = 40
 
 ## the maximum number of lines the interface should take up
 ## when atuin is invoked from a shell up-key binding
